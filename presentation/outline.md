@@ -2,124 +2,213 @@
 
 ## Slide 1 — Vulnerability Management Has a Judgment Bottleneck
 
-Enterprise security teams already generate large volumes of findings.
+### Executive message
 
-The scarce resource is experienced security judgment:
+Enterprise security teams do not lack findings. They lack enough experienced security judgment to investigate them all.
 
-- Is it real?
+### Questions the workflow must answer
+
+- Is the finding real?
 - Is it exploitable?
-- Does it matter here?
+- Does it matter in this environment?
 - What is the safest remediation?
 
-**Message:** The opportunity is not simply finding more vulnerabilities. It is reducing the effort required to reach a trustworthy remediation decision.
+**Talk track:** The opportunity is not simply finding more vulnerabilities. It is reducing the effort required to reach a trustworthy remediation decision.
 
-## Slide 2 — Why This Is Getting Harder
+---
 
-Software supply chains, CI/CD complexity, and AI-assisted security research are increasing the speed at which weaknesses can be identified and investigated.
+## Slide 2 — AI Changes the Economics of Security
 
-Defenders need comparable improvements in investigation and remediation velocity.
+### Executive message
 
-**Message:** Increase security-engineering leverage without removing governance.
+AI can accelerate both vulnerability research and defensive security work.
+
+### Why this matters
+
+- Software and supply-chain complexity continues to increase.
+- CI/CD and release infrastructure are part of the attack surface.
+- AI lowers the effort required to investigate complex code paths.
+- Defenders need comparable gains in investigation and remediation velocity.
+
+**Message:** The response to AI-accelerated attackers should be AI-accelerated defenders, with controls.
+
+---
 
 ## Slide 3 — Where Codex Security Fits
 
-Repository
-→ context and security policy
-→ Codex Security
-→ discovery
-→ evidence and validation
-→ human review
-→ remediation
-→ existing engineering workflow
+### Product architecture
 
-**Message:** Codex Security complements existing scanners, source-control controls, and AppSec teams.
+```text
+Repository + security policy
+            ↓
+\n       Codex Security
+            ↓
+Understand → Discover → Validate → Remediate
+            ↓
+        Human review
+            ↓
+Existing engineering / security workflow
+```
 
-## Slide 4 — Representative Workflow
+### Key message
 
-Demonstration scenario:
+Codex Security complements existing scanners, AppSec teams, source-control controls, and CI/CD. It does not replace them.
 
-A GitHub Actions release workflow permits a version tag to initiate publication of an official container image.
+---
 
-Attack path:
+## Slide 4 — Representative Vulnerability Operations Workflow
 
+### Demonstration scenario
+
+Software supply-chain risk in a release pipeline.
+
+```text
 Unapproved commit
-→ release tag
-→ GitHub Actions
-→ container build
-→ official registry
-→ downstream consumers
+      ↓
+Release tag
+      ↓
+GitHub Actions
+      ↓
+Container build
+      ↓
+Official registry
+      ↓
+Downstream consumers
+```
 
-## Slide 5 — What Codex Security Discovered
+### Scope
 
-Codex Security identified that repository-local release logic did not verify that the tagged commit came from the approved release branch before publication.
+This submission selects **Vulnerability Operations** and focuses the demonstration on repository-aware discovery, validation, prioritization, and remediation because Codex Security is the primary product being evaluated.
 
-**Message:** The analysis extended beyond application source code into CI/CD and software-supply-chain logic.
+---
 
-## Slide 6 — Where AI Stopped and Enterprise Context Began
+## Slide 5 — What Codex Security Found
+
+Codex Security identified that:
+
+- a matching release tag triggers privileged automation,
+- the tagged revision is used for the build,
+- the workflow can publish an official container image,
+- and the repository did not itself verify that the tagged commit came through the approved release path.
+
+### Key message
+
+Codex reasoned beyond application source code into CI/CD and software-supply-chain logic.
+
+### Visual
+
+Use one screenshot from the Codex Security finding rather than a wall of text.
+
+---
+
+## Slide 6 — Where AI Stopped and Human Judgment Started
 
 ### Repository evidence
 
-- `v*` tag triggers release automation
-- tagged revision is checked out
-- container publication is attempted
+- A matching tag triggers the workflow.
+- The tagged revision is checked out.
+- A publication path exists.
 
-### Enterprise evidence still required
+### Enterprise context still required
 
-- who can create tags
-- GitHub rulesets
-- protected environments
-- registry permissions
-- downstream verification controls
+- Who can create release tags?
+- Are tags protected by rulesets?
+- Are protected environments used?
+- What permissions does the registry credential have?
+- Are artifacts signed or promoted through another approval gate?
 
-**Message:** Repository context is powerful, but enterprise context determines actual risk.
+### What happened during review
 
-## Slide 7 — Remediation Requires Layered Controls
+The initial finding was rated High. After challenging the assumptions, Codex separated what the repository proved from what depended on external enterprise controls and recalibrated the finding to conditional Medium pending additional evidence.
 
+#**Headline:** Repository context informs the analysis. Enterprise context determines the final risk decision.
+
+---
+
+## Slide 7 — Safe Remediation Requires Layered Controls
+
+```text
 Protected source
-→ protected release tag
-→ release validation
-→ unprivileged build
-→ immutable artifact
-→ independent approval
-→ credentialed publication
+      ↓
+Protected release tag
+      ↓
+Release validation
+      ↓
+Unprivileged build
+      ↓
+Immutable artifact
+      ↓
+Independent approval
+      ↓
+Credentialed publication
+```
 
-**Message:** Codex can recommend controls, but secure operation depends on both repository changes and enterprise governance.
+Codex proposed a release-validation control, then identified why that control might not be sufficient on its own if an attacker can modify the workflow or bypass surrounding GitHub controls.
 
-## Slide 8 — Product Assessment
+**Key message:** AI can propose remediation, but secure operation depends on both repository controls and enterprise governance.
 
-### Strongest Areas
+---
 
-- repository comprehension
-- security reasoning
-- attack-path analysis
-- evidence generation
-- remediation proposals
+## Slide 8 — My Product Assessment
+
+### Works well
+
+- Repository comprehension
+- Security reasoning
+- Attack-path analysis
+- Evidence generation
+- Remediation proposals
 
 ### Limitations
 
-- important controls may exist outside the repository
-- severity depends on deployment context
-- findings and patches still require human review
+- Important controls may exist outside the repository.
+- Severity can depend heavily on deployment context.
+- Validation is not proof of absence.
+- Generated fixes still require normal engineering review.
 
-### Appropriate Users
+### Appropriate users
 
 - AppSec
 - Product Security
 - Security Engineering
 - Developers as remediation partners
 
-## Slide 9 — Controlled Enterprise Pilot
+### Human oversight
 
-Start with 5–10 representative repositories over three weeks.
+- Context validation
+- Finding disposition
+- Severity assignment
+- Patch review
+- PR / release approval
 
-Measure:
+---
 
-- finding quality
-- analyst agreement
-- investigation efficiency
-- remediation quality
-- review load
-- operational fit
-- scale and usage characteristics
+## Slide 9 — Prove Value Before Production
 
-**Recommendation:** Expand gradually only when the pilot demonstrates measurable security value and manageable human-review requirements.
+### Three-week controlled pilot
+
+- 5–10 representative repositories
+- Dedicated AppSec reviewers
+- Known-positive evaluation set
+- Existing scanner data used as comparison evidence
+- No autonomous merges or deployments
+
+### Measure
+
+- Finding quality
+- Analyst agreement
+- Human investigation time per actionable vulnerability
+- Remediation acceptance
+- Review load
+- Operational fit
+- Scale and usage characteristics
+
+### Recommendation
+
+Start narrow, prove finding quality and analyst leverage, preserve human approval, and expand by repository risk tier only when the evidence supports it.
+
+---
+
+## Story Arc
+
+**Problem → Why now → Product fit → Real example → Discovery → Human judgment → Safe remediation → Product point of view → Pilot**
