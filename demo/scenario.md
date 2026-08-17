@@ -27,7 +27,7 @@ The bottleneck is experienced human judgment:
 
 **Vulnerability Operations**
 
-The demonstration focuses on a software supply-chain risk in a GitHub Actions release workflow.
+Codex Security can also triage existing security findings against repository evidence. The live demonstration uses the complementary new-discovery path and focuses on a software supply-chain risk in a GitHub Actions release workflow.
 
 A release tag can trigger publication of an official container image.
 

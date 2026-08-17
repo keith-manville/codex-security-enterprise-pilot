@@ -3,6 +3,7 @@
 ## 0:00–0:45 — Set the customer context
 - Large enterprise with GitHub Enterprise and mature AppSec.
 - Existing scanners already generate findings.
+- Codex Security can triage an existing backlog against repository evidence; this demo follows the complementary new-discovery path.
 - The bottleneck is validating what is real, understanding impact, and getting to a safe fix.
 
 ## 0:45–1:30 — Introduce the repository
@@ -43,7 +44,7 @@
 - Independent human approval
 
 ## 6:15–7:00 — Close with the product point of view
-- Codex Security is strong at repository understanding, attack-path reasoning, validation, and remediation guidance.
+- Codex Security is strong at repository understanding, backlog triage, attack-path reasoning, validation evidence, proof-gap identification, and focused remediation guidance.
 - It still needs enterprise context that lives outside the repo.
 - Human security judgment remains essential for risk disposition and production approval.
 - Pilot narrowly, measure quality, then scale.

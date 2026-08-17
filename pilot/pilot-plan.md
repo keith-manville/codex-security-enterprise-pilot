@@ -2,7 +2,7 @@
 
 ## Objective
 
-Evaluate whether Codex Security can improve an enterprise vulnerability-management workflow by helping AppSec teams discover, investigate, validate, and remediate repository-level security findings while preserving human oversight.
+Evaluate whether Codex Security can improve an enterprise vulnerability-management workflow by helping AppSec teams triage existing findings, discover new repository-level vulnerabilities, validate uncertain findings when needed, and remediate accepted findings while preserving human oversight.
 
 The pilot is designed to answer a practical question:
 
@@ -154,6 +154,7 @@ Determine whether Codex Security improves the path from finding to safe remediat
 6. Measure how much human modification is required.
 7. Compare the Codex-assisted workflow to the organization's existing process.
 8. Conduct a final pilot review with AppSec, engineering, and platform stakeholders.
+9. For selected accepted findings, test portable export or approval-gated issue preparation as part of the handoff workflow.
 
 ### Human Approval Points
 
@@ -260,6 +261,8 @@ The pilot should explicitly assess situations where important context exists out
 
 These limitations should be treated as evaluation findings, not hidden.
 
+The pilot does not assume Codex Security replaces the customer's upstream normalization or deduplication pipeline. Those capabilities remain part of the surrounding vulnerability-management workflow unless explicitly validated.
+
 ## Exit Criteria
 
 At the end of the pilot, the customer should be able to answer:
@@ -272,6 +275,17 @@ At the end of the pilot, the customer should be able to answer:
 6. What governance is required before broader adoption?
 7. Should usage expand beyond the pilot repositories?
 8. Can the organization operate Codex Security at the next scale tier without exceeding available AppSec review capacity?
+
+## Scale-Out Path
+
+If the controlled pilot meets its quality and review-load thresholds, evaluate scale in stages:
+
+1. **Security Workbench / focused repository reviews** for analyst-led onboarding and investigation.
+2. **CLI bulk scans** against a controlled repository inventory pinned to exact revisions.
+3. **Diff-focused CI scanning** with structured artifacts such as SARIF.
+4. **Selective enforcement** only after finding quality, false-positive rates, reviewer capacity, and ownership are proven.
+
+Bulk or CI adoption should not remove the human decision boundaries established in this pilot.
 
 ## Expansion Decision
 

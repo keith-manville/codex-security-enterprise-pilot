@@ -10,6 +10,14 @@ Use this scorecard for each representative repository or selected finding during
 **Reviewer:**  
 **Date:**  
 **Codex Security Scan Type:**  
+**Finding Source:** New discovery / Existing backlog  
+**Repository Revision:**  
+**Plugin Version:**  
+**Model:**  
+**Reasoning Effort:**  
+**Scan Area:**  
+**Coverage Status:**  
+**Deferred / Follow-up Surfaces:**  
 
 ## Finding
 
@@ -42,9 +50,14 @@ Consider:
 - attack path,
 - preconditions,
 - supporting evidence,
-- and clarity of assumptions.
+- clarity of assumptions,
+- remaining uncertainty,
+- and proof gaps.
 
 **Reviewer Notes:**
+
+**Runtime validation needed?** Yes / No / Unclear  
+**Runtime validation result, if performed:**  
 
 ## 3. Enterprise Context
 
@@ -138,7 +151,20 @@ Score each area from 1–5.
 | Reviewer usability | | |
 | Operational fit | | |
 
-## 9. Final Reviewer Decision
+## 9. Handoff / Tracking
+
+Was an export or tracked-item handoff tested?
+
+- No
+- JSON / CSV / SARIF export
+- Approval-gated GitHub issue
+- Approval-gated Jira issue
+- Approval-gated Linear issue
+- Private draft GitHub Security Advisory
+
+**Reviewer Notes:**
+
+## 10. Final Reviewer Decision
 
 Would you want Codex Security used on similar repositories?
 
@@ -149,7 +175,7 @@ Would you want Codex Security used on similar repositories?
 
 **Conditions / rationale:**
 
-## 10. Key Learning
+## 11. Key Learning
 
 **What Codex Security did particularly well:**
 

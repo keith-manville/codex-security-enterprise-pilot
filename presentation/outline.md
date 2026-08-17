@@ -4,13 +4,14 @@
 
 ### Executive message
 
-Enterprise security teams do not lack findings. They lack enough experienced security judgment to investigate them all.
+Enterprise security teams do not lack findings. They lack enough experienced security judgment to investigate and remediate them all.
 
 ### Questions the workflow must answer
 
 - Is the finding real?
 - Is it exploitable?
 - Does it matter in this environment?
+- What evidence supports the decision?
 - What is the safest remediation?
 
 **Talk track:** The opportunity is not simply finding more vulnerabilities. It is reducing the effort required to reach a trustworthy remediation decision.
@@ -27,32 +28,43 @@ AI can accelerate both vulnerability research and defensive security work.
 
 - Software and supply-chain complexity continues to increase.
 - CI/CD and release infrastructure are part of the attack surface.
-- AI lowers the effort required to investigate complex code paths.
+- AI can reduce the effort required to investigate complex code paths.
 - Defenders need comparable gains in investigation and remediation velocity.
 
-**Message:** The response to AI-accelerated attackers should be AI-accelerated defenders, with controls.
+**Message:** Increase security-engineering leverage without removing governance.
 
 ---
 
-## Slide 3 — Where Codex Security Fits
+## Slide 3 — Where Codex Security Fits in Vulnerability Operations
 
-### Product architecture
+### Two entry paths
 
 ```text
-Repository + security policy
-            ↓
-\n       Codex Security
-            ↓
-Understand → Discover → Validate → Remediate
-            ↓
-        Human review
-            ↓
-Existing engineering / security workflow
+Existing findings                         Authorized repository
+SAST / SCA / SARIF                       + SECURITY.md policy
+CVE / GHSA / Dependabot                         |
+Jira / Linear                                   |
+        |                                        |
+        v                                        v
+Backlog triage                            New discovery scan
+        \                                      /
+         \                                    /
+          --> Evidence + proof gaps <---------
+                      |
+              Validation when needed
+                      |
+               Human disposition
+                      |
+              Focused remediation
+                      |
+          PR / CI / issue handoff
 ```
 
 ### Key message
 
-Codex Security complements existing scanners, AppSec teams, source-control controls, and CI/CD. It does not replace them.
+Codex Security complements the customer's existing vulnerability-management systems, scanners, AppSec team, source-control controls, and CI/CD.
+
+This pilot does not assume Codex replaces upstream normalization or deduplication.
 
 ---
 
@@ -60,25 +72,25 @@ Codex Security complements existing scanners, AppSec teams, source-control contr
 
 ### Demonstration scenario
 
-Software supply-chain risk in a release pipeline.
+Software supply-chain risk in a GitHub Actions release workflow.
 
 ```text
 Unapproved commit
-      ↓
+      |
 Release tag
-      ↓
+      |
 GitHub Actions
-      ↓
+      |
 Container build
-      ↓
+      |
 Official registry
-      ↓
+      |
 Downstream consumers
 ```
 
 ### Scope
 
-This submission selects **Vulnerability Operations** and focuses the demonstration on repository-aware discovery, validation, prioritization, and remediation because Codex Security is the primary product being evaluated.
+The demonstration uses Codex Security for repository-aware discovery, investigation, validation evidence, prioritization, and remediation. Existing scanner findings remain a supported upstream workflow but are not the live demo path.
 
 ---
 
@@ -119,9 +131,9 @@ Use one screenshot from the Codex Security finding rather than a wall of text.
 
 ### What happened during review
 
-The initial finding was rated High. After challenging the assumptions, Codex separated what the repository proved from what depended on external enterprise controls and recalibrated the finding to conditional Medium pending additional evidence.
+The initial finding was rated High. After challenging the assumptions, Codex separated repository evidence from external enterprise controls and recalibrated the finding to conditional Medium pending additional evidence.
 
-#**Headline:** Repository context informs the analysis. Enterprise context determines the final risk decision.
+**Headline:** Repository context informs the analysis. Enterprise context determines the final risk decision.
 
 ---
 
@@ -129,17 +141,17 @@ The initial finding was rated High. After challenging the assumptions, Codex sep
 
 ```text
 Protected source
-      ↓
+      |
 Protected release tag
-      ↓
+      |
 Release validation
-      ↓
+      |
 Unprivileged build
-      ↓
+      |
 Immutable artifact
-      ↓
+      |
 Independent approval
-      ↓
+      |
 Credentialed publication
 ```
 
@@ -154,17 +166,20 @@ Codex proposed a release-validation control, then identified why that control mi
 ### Works well
 
 - Repository comprehension
+- Backlog triage against source
 - Security reasoning
 - Attack-path analysis
 - Evidence generation
-- Remediation proposals
+- Focused remediation proposals
+- Structured export / approval-gated issue preparation
 
-### Limitations
+### Limitations and boundaries
 
 - Important controls may exist outside the repository.
 - Severity can depend heavily on deployment context.
-- Validation is not proof of absence.
+- Validation can leave proof gaps; it is not proof of absence.
 - Generated fixes still require normal engineering review.
+- This pilot does not assume Codex replaces upstream normalization or deduplication.
 
 ### Appropriate users
 
@@ -190,7 +205,7 @@ Codex proposed a release-validation control, then identified why that control mi
 - 5–10 representative repositories
 - Dedicated AppSec reviewers
 - Known-positive evaluation set
-- Existing scanner data used as comparison evidence
+- Existing scanner findings used for a backlog-triage lane and comparison evidence
 - No autonomous merges or deployments
 
 ### Measure
@@ -198,17 +213,20 @@ Codex proposed a release-validation control, then identified why that control mi
 - Finding quality
 - Analyst agreement
 - Human investigation time per actionable vulnerability
+- Evidence quality and proof gaps
 - Remediation acceptance
 - Review load
+- Coverage and deferred surfaces
 - Operational fit
-- Scale and usage characteristics
+- Scan duration and scale characteristics
+
+### Scale-out path
+
+**Workbench pilot**
+→ **bulk scans against pinned revisions**
+→ **diff-focused CI + SARIF**
+→ **selective enforcement only after quality thresholds are proven**
 
 ### Recommendation
 
 Start narrow, prove finding quality and analyst leverage, preserve human approval, and expand by repository risk tier only when the evidence supports it.
-
----
-
-## Story Arc
-
-**Problem → Why now → Product fit → Real example → Discovery → Human judgment → Safe remediation → Product point of view → Pilot**
