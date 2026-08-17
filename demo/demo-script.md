@@ -29,10 +29,9 @@
 - Emphasize that the model did not overclaim certainty.
 
 ## 4:15–5:15 — Show remediation
-- Show the proposed ancestry gate.
-- Explain why it helps.
-- Then show the residual risk:
-  an in-workflow check is not sufficient if the attacker can modify the workflow itself.
+- Show the proposed release validation check.
+- Explain that the workflow verifies the tagged commit came from the approved release branch before allowing publication.
+- Then show the residual risk: this check may not be sufficient on its own if an attacker can also modify the release workflow or bypass surrounding GitHub controls.
 
 ## 5:15–6:15 — Show layered enterprise controls
 - Protected source branch
