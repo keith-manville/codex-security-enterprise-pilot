@@ -43,13 +43,16 @@ Repository context
 → Human approval  
 → Deployment or release
 
-## What This Repository Contains
+## Submission Artifacts
 
-- `demo/` — customer scenario and demo walkthrough
-- `architecture/` — reference workflow and trust boundaries
-- `pilot/` — pilot plan, success criteria, and evaluation scorecard
-- `evidence/` — screenshots and selected Codex Security outputs
-- `presentation/` — customer-facing presentation outline
+- [Customer Demo Scenario](demo/scenario.md)
+- [5–7 Minute Demo Script](demo/demo-script.md)
+- [Enterprise Workflow Architecture](architecture/workflow.md)
+- [Three-Week Pilot Plan](pilot/pilot-plan.md)
+- [Pilot Success Criteria](pilot/success-criteria.md)
+- [Evaluation Scorecard](pilot/evaluation-scorecard.md)
+- [Customer Presentation Outline](presentation/outline.md)
+- [Supporting Evidence](evidence/README.md)
 
 ## Evaluation Focus
 
@@ -87,6 +90,16 @@ The exercise shows how Codex Security:
 - proposes a minimal remediation,
 - and identifies the surrounding controls required for a complete enterprise solution.
 
+## Training and Evidence Note
+
+OWASP Juice Shop was used as an authorized, deliberately vulnerable training repository to learn the Codex Security workflow and generate the initial evidence artifact.
+
+It is not presented as a representative enterprise workload. The customer-facing submission uses the workflow and lessons learned to illustrate an enterprise evaluation methodology.
+
+## Disclaimer
+
+This repository is a candidate-created evaluation and demonstration project. It is not an official OpenAI product, reference architecture, or supported implementation.
+
 ## Status
 
-Work in progress.
+Submission package in development. Core narrative, demo, architecture, pilot plan, success criteria, and evaluation scorecard are complete. Final screenshots and presentation design remain.

@@ -89,6 +89,6 @@ Human review remains required for:
 
 ## Core Lesson
 
-Codex Security can accelerate the path from suspicious code to evidence-backed security analysis and remediation.
+Codex Security can accelerate the path from a potential repository-level security issue to evidence-backed analysis and remediation.
 
 It should not be treated as a replacement for enterprise identity, source-control governance, CI/CD policy, or human security judgment.
