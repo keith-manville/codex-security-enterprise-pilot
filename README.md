@@ -116,7 +116,7 @@ It is not presented as a representative enterprise workload. The customer-facing
 
 ## Disclaimer
 
-This repository is a candidate-created evaluation and demonstration project. It is not an official OpenAI product, reference architecture, or supported implementation.
+This repository is a demonstration project. It is not an official OpenAI product, reference architecture, or supported implementation.
 
 ## Status
 
