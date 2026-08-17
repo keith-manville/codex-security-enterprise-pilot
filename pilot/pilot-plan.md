@@ -14,7 +14,7 @@ Run a controlled three-week evaluation using a small set of representative repos
 
 Recommended scope:
 
-- 10–20 repositories
+- 5–10 representative repositories
 - Mix of internet-facing and internal applications
 - Mix of languages and frameworks
 - At least one application with a complex CI/CD pipeline
@@ -23,6 +23,13 @@ Recommended scope:
 - Repositories with known historical security findings where possible
 
 The pilot should not begin with an organization-wide rollout.
+
+### Data and Access Assumptions
+
+- Only repositories explicitly authorized for assessment are included.
+- Repository access follows existing enterprise identity, role, and workspace controls.
+- Pilot participants receive only the permissions required for their role.
+- Sensitive repository and security data should remain subject to the customer's existing governance and handling requirements.
 
 ## Participants
 
@@ -67,16 +74,16 @@ Responsibilities:
 
 ### Activities
 
-1. Select 10–20 representative repositories.
+1. Select 5–10 representative repositories.
 2. Review each repository's security policy and ownership.
 3. Document available architectural and deployment context.
 4. Collect existing security evidence where available:
-   - historical AppSec findings
+   - historical human-validated AppSec findings
    - penetration-test results
-   - SAST findings
-   - SCA findings
+   - previously remediated vulnerabilities
    - previous vulnerability tickets
-5. Establish which findings are considered known ground truth.
+   - SAST and SCA findings as comparison data
+5. Establish a known-positive evaluation set from previously human-validated vulnerabilities and resolved security findings where available. Treat existing scanner findings as comparison data unless independently validated.
 6. Record the current human process for:
    - investigation
    - severity assignment
@@ -205,6 +212,25 @@ Evaluate whether Codex Security outputs can fit naturally into:
 - vulnerability-management processes
 - existing security governance
 
+### 7. Review Load
+
+Measure:
+
+- analyst minutes required to review Codex Security output per repository
+- analyst minutes required per actionable finding
+- number of findings requiring deeper manual investigation
+
+### 8. Scale and Usage
+
+Measure:
+
+- scan duration by repository size and complexity
+- reviewer workload
+- concurrency or throughput constraints
+- usage and cost characteristics where available
+
+The objective is to determine whether the workflow can scale without exceeding available AppSec review capacity.
+
 ## Safety and Human Oversight
 
 The pilot treats Codex Security as a security-engineering assistant, not an autonomous decision-maker.
@@ -245,6 +271,7 @@ At the end of the pilot, the customer should be able to answer:
 5. Which teams should own the workflow?
 6. What governance is required before broader adoption?
 7. Should usage expand beyond the pilot repositories?
+8. Can the organization operate Codex Security at the next scale tier without exceeding available AppSec review capacity?
 
 ## Expansion Decision
 
